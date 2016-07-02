@@ -2,30 +2,154 @@
 <!-- basic_chat.aiml -->
 
     <category>
-        <pattern>HELLO</pattern>
+        <pattern>DZIEN DOBRY</pattern>
         <template>
-            Well, hello!
+            Witam, z tej strony pracownik dzialu reklamacji. Z kim rozmawiam?
+        </template>
+    </category>
+    <category>
+        <pattern>WITAM</pattern>
+        <template>
+            <srai>DZIEN DOBRY</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>DOBRY WIECZOR</pattern>
+        <template>
+            <srai>DZIEN DOBRY</srai>
+        </template>
+    </category>
+    <category>
+        <pattern>CZESC</pattern>
+        <template>
+            <srai>DZIEN DOBRY</srai>
         </template>
     </category>
 
     <category>
-        <pattern>WHAT ARE YOU</pattern>
+        <pattern>MAM NA IMIE *</pattern>
         <template>
-            I'm a bot, silly!
+            Co moge dla Ciebie zrobic <set name="username"><star/></set>
+        </template>
+    </category>
+    <category>
+        <pattern>NAZYWAM SIE *</pattern>
+        <template>
+            <srai>MAM NA IMIE <star/></srai>
+        </template>
+    </category>
+    <category>
+        <pattern>Z tej strony *</pattern>
+        <template>
+            <srai>MAM NA IMIE <star/></srai>
         </template>
     </category>
 
     <category>
-      <pattern>MY DOGS NAME IS *</pattern>
+        <pattern>MAM PROBLEM Z *</pattern>
+        <template>Podaj nazwe produktu</template>
+    </category>
+    <category>
+        <pattern>ZEPSUL MI SIE *</pattern>
+        <template>
+            <srai>MAM PROBLEM Z <star/></srai>
+        </template>
+    </category>
+    <category>
+        <pattern>_ MAM PROBLEM Z *</pattern>
+        <template>Podaj nazwe produktu</template>
+    </category>
+    <category>
+        <pattern>_ ZEPSUL MI SIE *</pattern>
+        <template>
+            <srai>MAM PROBLEM Z <star/></srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>JAK SIE NAZYWAM</pattern>
+        <template>
+            Nazywasz sie <get name="username"></get>
+        </template>
+    </category>
+    <category>
+        <pattern>Z CZYM MAM PROBLEM</pattern>
+        <template>
+            Masz problem z <get name="product"></get>
+        </template>
+    </category>
+    <category>
+        <pattern>CO MI SIE ZEPSULO</pattern>
+        <template>
+            Zepsul Ci sie <get name="product"></get>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>*</pattern>
+        <that>PODAJ NAZWE PRODUKTU</that>
+        <template>
+            <think><set name="product"><star/></set></think>
+            Dzieki za informacje. Czy posiadasz gwarancje
+        </template>
+    </category>
+    <category>
+        <pattern>TAK</pattern>
+        <that>* CZY POSIADASZ GWARANCJE</that>
+        <template>
+            W takim razie, kiedy to sie stalo
+        </template>
+    </category>
+    <category>
+        <pattern>NIE</pattern>
+        <that>* CZY POSIADASZ GWARANCJE</that>
+        <template>
+            <think><set name="warranty">nie</set></think>
+            Niestety bez gwaracji nie możemy Panu/Pani pomoc.
+        </template>
+    </category>
+    <category>
+        <pattern>_</pattern>
+        <that>* KIEDY TO SIE STALO</that>
+        <template>
+            Nasz pracownik sie tym zajmie, prosze podac numer telefonu
+        </template>
+    </category>
+    <category>
+        <pattern>*</pattern>
+        <that>_ PODAC NUMER TELEFONU</that>
+        <template>
+            To juz wszystko, pracownik zadzwoni pod ten numer: <set name="number"><star/></set>
+        </template>
+    </category>
+
+
+    <category>
+      <pattern>DO WIDZENIA</pattern>
       <template>
-         That is interesting that you have a dog named <set name="dog"><star/></set>
+          <condition name="warranty" value="nie">
+              Do widzenia <get name="username"></get>, przepraszamy ze nie moglismy pomoc :(
+          </condition>
+          <condition name="warranty" value="">
+              Do widzenia <get name="username"></get> :)
+          </condition>
       </template>
-   </category>
-   <category>
-      <pattern>WHAT IS MY DOGS NAME</pattern>
+    </category>
+    <category>
+      <pattern>DO USYLYSZENIA</pattern>
       <template>
-         Your dog's name is <get name="dog"/>.
+          <srai>DO WIDZENIA</srai>
       </template>
-   </category>
+    </category>
+
+
+
+    <category>
+      <pattern>*</pattern>
+      <template>
+          Nie za bardzo rozumiem.
+      </template>
+    </category>
 
 </aiml>
