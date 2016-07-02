@@ -22,6 +22,10 @@ class Neuron:
                 delta_w = [theta*e*_ for _ in learn_el]
                 self.w = [_ + __ for _, __ in zip(self.w, delta_w)]
 
+    def update_weight(self, el, learning_rate):
+        for i in range(len(self.w)):
+            self.w[i] = (el[i] - self.w[i]) * learning_rate
+
 if __name__ == "__main__":
     n = Neuron(12)
     x_ucz = [
