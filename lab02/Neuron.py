@@ -1,4 +1,4 @@
-from random import uniform
+from random import uniform, gauss
 
 
 class Neuron:
@@ -25,6 +25,9 @@ class Neuron:
     def update_weight(self, el, learning_rate):
         for i in range(len(self.w)):
             self.w[i] = (el[i] - self.w[i]) * learning_rate
+
+    def mutate(self, sigma):
+        self.w = [e+gauss(0.0, sigma) for e in self.w]
 
 if __name__ == "__main__":
     n = Neuron(12)
