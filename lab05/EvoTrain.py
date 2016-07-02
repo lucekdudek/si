@@ -18,7 +18,6 @@ class EvoTrain(Neuron):
         self.err_to_draw = self.iterations * [0]
         for i in range(self.iterations):
             y = deepcopy(self.x)
-            y.w = self.x.w#TODO czy to ejs tpotrzebne?
             y.mutate(self.sigma)
 
             if self.get_err(self.x, i) > self.get_err(y, i):
