@@ -1,5 +1,7 @@
-from Py3kAiml import aiml
 import os
+from unicodedata import normalize
+
+from Py3kAiml import aiml
 
 if __name__ == "__main__":
     kernel = aiml.Kernel()
@@ -17,6 +19,7 @@ if __name__ == "__main__":
         elif message == "save":
             kernel.saveBrain("bot_brain.brn")
         else:
+            message = normalize('NFD', message).encode('ascii', 'ignore').decode("utf-8")
             bot_response = kernel.respond(message)
             print(bot_response)
 
